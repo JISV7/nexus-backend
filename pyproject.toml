@@ -1,0 +1,26 @@
+[project]
+name = "nexus-backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard-no-fastapi-cloud-cli]>=0.136.1",
+    "fpdf2>=2.8.7",
+    "google-genai>=2.6.0",
+    "pydantic>=2.13.4",
+    "python-dotenv>=1.2.2",
+    "slowapi>=0.1.9",
+]
+
+[tool.pyrefly]
+project-includes = [
+    "**/*.py*",
+    "**/*.ipynb",
+]
+
+[dependency-groups]
+dev = [
+    "pyrefly>=1.0.0",
+    "ruff>=0.15.14",
+]
