@@ -1,11 +1,12 @@
 from google import genai
+from app.core.config import settings
 from app.ai_analysis.ai_analysis_schema import AIAnalysisRequest, AIAnalysisResponse
 
 class AIAnalysisService:
     @staticmethod
     def get_cto_analysis(request: AIAnalysisRequest) -> AIAnalysisResponse:
-        # Client picks up GEMINI_API_KEY or GOOGLE_API_KEY from env automatically
-        with genai.Client() as client:
+        # Explicitly pass the API key from settings to ensure it's loaded
+        with genai.Client(api_key=settings.GEMINI_API_KEY) as client:
             prompt = f"""
             Actúa como un Chief Technology Officer (CTO) de NexusCore Systems.
             Analiza la viabilidad de negocio y el riesgo técnico de los siguientes resultados de optimización:
