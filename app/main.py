@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.server_load.server_load_routes import router as server_load_router
 from app.network_routing.network_routing_routes import router as network_routing_router
@@ -12,7 +13,17 @@ app = FastAPI(
     openapi_url=f"{settings.API_V1_STR}/openapi.json"
 )
 
+# Configure CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Include Routers
+
 app.include_router(server_load_router, prefix=settings.API_V1_STR)
 app.include_router(network_routing_router, prefix=settings.API_V1_STR)
 app.include_router(marketing_router, prefix=settings.API_V1_STR)
