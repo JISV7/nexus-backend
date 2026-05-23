@@ -23,4 +23,5 @@ project-includes = [
 dev = [
     "pyrefly>=1.0.0",
     "ruff>=0.15.14",
+    "types-fpdf2>=2.8.4.20260518",
 ]

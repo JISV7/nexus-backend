@@ -586,6 +586,7 @@ dependencies = [
 dev = [
     { name = "pyrefly" },
     { name = "ruff" },
+    { name = "types-fpdf2" },
 ]
 
 [package.metadata]
@@ -602,6 +603,7 @@ requires-dist = [
 dev = [
     { name = "pyrefly", specifier = ">=1.0.0" },
     { name = "ruff", specifier = ">=0.15.14" },
+    { name = "types-fpdf2", specifier = ">=2.8.4.20260518" },
 ]
 
 [[package]]
@@ -1010,6 +1012,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/e4/51/9aed62104cea109b820bbd6c14245af756112017d309da813ef107d42e7e/typer-0.25.1.tar.gz", hash = "sha256:9616eb8853a09ffeabab1698952f33c6f29ffdbceb4eaeecf571880e8d7664cc", size = 122276, upload-time = "2026-04-30T19:32:16.964Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/3f/f9/2b3ff4e56e5fa7debfaf9eb135d0da96f3e9a1d5b27222223c7296336e5f/typer-0.25.1-py3-none-any.whl", hash = "sha256:75caa44ed46a03fb2dab8808753ffacdbfea88495e74c85a28c5eefcf5f39c89", size = 58409, upload-time = "2026-04-30T19:32:18.271Z" },
+]
+
+[[package]]
+name = "types-fpdf2"
+version = "2.8.4.20260518"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pillow" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/e4/c5/04fb15a889dc7193cb1529de62007cf0161fa58324aea73e37ff14dbc7c2/types_fpdf2-2.8.4.20260518.tar.gz", hash = "sha256:e3d0cbc0f3ac47a158142871bcc1c972db4653d930f2edb028dacc6c1df79667", size = 42015, upload-time = "2026-05-18T06:07:17.024Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d6/d7/3b66101a76126e222e9e5d190c7e88e1c0f4f64e53dab676fd71748b3c83/types_fpdf2-2.8.4.20260518-py3-none-any.whl", hash = "sha256:e4aa0a9b1486e66d4004190466273cd296eeb16a57b54944569f16f346aa41a2", size = 48321, upload-time = "2026-05-18T06:07:15.558Z" },
 ]
 
 [[package]]

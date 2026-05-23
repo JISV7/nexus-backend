@@ -43,4 +43,4 @@ class AIAnalysisService:
                     model="models/gemini-flash-lite-latest", contents=prompt
                 )
 
-            return AIAnalysisResponse(analysis=response.text)
+            return AIAnalysisResponse(analysis=response.text or "")
