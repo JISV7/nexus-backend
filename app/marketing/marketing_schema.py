@@ -1,16 +1,25 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+from typing import List, Optional
+
+class ChannelInput(BaseModel):
+    name: str
+    linear_coef: float = Field(..., description="The 'a' or 'b' coefficient (linear yield)")
+    saturation_penalty: float = Field(..., description="The 'c' or 'd' coefficient (quadratic penalty for saturation)")
+
+class ConstraintInput(BaseModel):
+    type: str = Field(..., description="'sum_all' (budget) or 'individual' (channel specific)")
+    target_channel: Optional[str] = Field(None, description="Required if type is 'individual'")
+    operator: str = Field(..., description="'<=', '>=', or '=='")
+    value: float
 
 class MarketingOptimizationRequest(BaseModel):
-    budget: float = 10.0
-    # f(x1, x2) = a*x1 + b*x2 - c*x1^2 - d*x2^2 + e*x1*x2 + f
-    a: float = 4.0
-    b: float = 5.0
-    c: float = 0.2
-    d: float = 0.3
-    e: float = 0.0
-    f: float = 0.0
+    channels: List[ChannelInput]
+    constraints: List[ConstraintInput]
+
+class ChannelResult(BaseModel):
+    name: str
+    investment: float
 
 class MarketingOptimizationResponse(BaseModel):
-    x1: float
-    x2: float
     max_value: float
+    channels: List[ChannelResult]
