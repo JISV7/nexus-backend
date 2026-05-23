@@ -8,24 +8,26 @@ class AIAnalysisService:
         # Explicitly pass the API key from settings to ensure it's loaded
         with genai.Client(api_key=settings.GEMINI_API_KEY) as client:
             prompt = f"""
-            Actúa como un Chief Technology Officer (CTO) de NexusCore Systems.
-            Analiza la viabilidad de negocio y el riesgo técnico de los siguientes resultados de optimización:
+            Analiza los resultados de optimización adjuntos. 
+            Actúa como un LLM en el rol de CTO de NexusCore Systems.
+            Tu respuesta DEBE seguir estrictamente esta estructura y tono técnico:
 
-            1. Optimización de Carga de Servidores:
-            {request.server_load_results}
+            1. RESUMEN EJECUTIVO (Máximo 3 líneas)
+            2. ANÁLISIS DE CARGA DE SERVIDORES (Riesgo de memoria y prioridad)
+            3. COMPETITIVIDAD DE RED (Evaluación de latencia vs industria)
+            4. EFICIENCIA DE MARKETING (ROI y saturación)
+            5. CONCLUSIÓN TÉCNICA FINAL
 
-            2. Red de Distribución de Datos (Latencia):
-            {request.network_routing_results}
+            DATOS DE ENTRADA:
+            - Carga: {request.server_load_results}
+            - Red: {request.network_routing_results}
+            - Marketing: {request.marketing_optimization_results}
 
-            3. Optimización de Presupuesto de Marketing:
-            {request.marketing_optimization_results}
-
-            Exige un análisis sobre:
-            - Si la latencia obtenida es competitiva en la industria actual.
-            - El riesgo técnico de la distribución de memoria seleccionada.
-            - La eficiencia del retorno de inversión en marketing digital ante los rendimientos decrecientes.
-            
-            Formatea tu respuesta de forma clara y profesional.
+            REGLAS DE FORMATO:
+            - NO incluyas encabezados de memorándum humano (DE:, PARA:, FECHA:, ASUNTO:).
+            - NO incluyas introducciones cordiales ni saludos (ej. "Estimado equipo").
+            - Usa un tono técnico, directo y basado en datos.
+            - Firma al final EXACTAMENTE como: "LLM Chief Technology Officer (CTO)"
             """
             
             try:
