@@ -1,13 +1,13 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
 
 class MicroserviceInput(BaseModel):
     name: str
-    ram_requirement: int
-    priority_value: int
+    ram_requirement: int = Field(ge=0)
+    priority_value: int = Field(ge=0)
 
 class ServerLoadRequest(BaseModel):
-    max_capacity: int = 16
+    max_capacity: int = Field(default=16, ge=0)
     microservices: List[MicroserviceInput]
 
 class SelectedItem(BaseModel):
