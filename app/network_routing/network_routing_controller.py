@@ -1,5 +1,9 @@
+from app.network_routing.network_routing_schema import (
+    NetworkRoutingRequest,
+    NetworkRoutingResponse,
+)
 from app.network_routing.network_routing_service import NetworkRoutingService
-from app.network_routing.network_routing_schema import NetworkRoutingRequest, NetworkRoutingResponse
+
 
 class NetworkRoutingController:
     @staticmethod

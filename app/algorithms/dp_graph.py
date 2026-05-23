@@ -1,4 +1,5 @@
-from typing import List, Dict, Any
+from typing import Any, Dict, List
+
 
 def solve_graph_routing(stages: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
@@ -13,22 +14,22 @@ def solve_graph_routing(stages: List[Dict[str, Any]]) -> Dict[str, Any]:
     """
     # Number of stages (from stage 1 to the last stage pointing to sink)
     # We assume the last stage points to the final destination node (e.g., J)
-    
+
     # Cost to reach destination from current node
     # Initialize with the last stage costs to sink
     # Actually, it's easier to process from the last stage backwards
-    
+
     # costs_to_end[node] = min cost to reach J from node
     costs_to_end = {}
     next_node = {}
-    
+
     # Process from last stage to first
     for stage in reversed(stages):
         new_costs = {}
         for source, destinations in stage.items():
-            min_cost = float('inf')
+            min_cost = float("inf")
             best_dest = None
-            
+
             for dest, cost in destinations.items():
                 # If dest is the sink (not in costs_to_end yet because it's the target)
                 # or if it's already computed
@@ -37,21 +38,18 @@ def solve_graph_routing(stages: List[Dict[str, Any]]) -> Dict[str, Any]:
                 if total < min_cost:
                     min_cost = total
                     best_dest = dest
-            
+
             new_costs[source] = min_cost
             next_node[source] = best_dest
-        
+
         costs_to_end.update(new_costs)
 
     # Reconstruct path starting from the first node of the first stage
-    start_node = list(stages[0].keys())[0] # Assume only one start node A
+    start_node = list(stages[0].keys())[0]  # Assume only one start node A
     path = [start_node]
     curr = start_node
     while curr in next_node:
         curr = next_node[curr]
         path.append(curr)
-        
-    return {
-        "min_latency": costs_to_end[start_node],
-        "path": path
-    }
+
+    return {"min_latency": costs_to_end[start_node], "path": path}

@@ -1,6 +1,8 @@
 from google import genai
-from app.core.config import settings
+
 from app.ai_analysis.ai_analysis_schema import AIAnalysisRequest, AIAnalysisResponse
+from app.core.config import settings
+
 
 class AIAnalysisService:
     @staticmethod
@@ -29,18 +31,16 @@ class AIAnalysisService:
             - Usa un tono técnico, directo y basado en datos.
             - Firma al final EXACTAMENTE como: "LLM Chief Technology Officer (CTO)"
             """
-            
+
             try:
                 # Primary choice: gemini-flash-latest
                 response = client.models.generate_content(
-                    model="models/gemini-flash-latest",
-                    contents=prompt
+                    model="models/gemini-flash-latest", contents=prompt
                 )
             except Exception:
                 # Last resort fallback: gemini-flash-lite-latest
                 response = client.models.generate_content(
-                    model="models/gemini-flash-lite-latest",
-                    contents=prompt
+                    model="models/gemini-flash-lite-latest", contents=prompt
                 )
-            
+
             return AIAnalysisResponse(analysis=response.text)

@@ -1,5 +1,9 @@
 from app.algorithms.dp_graph import solve_graph_routing
-from app.network_routing.network_routing_schema import NetworkRoutingRequest, NetworkRoutingResponse
+from app.network_routing.network_routing_schema import (
+    NetworkRoutingRequest,
+    NetworkRoutingResponse,
+)
+
 
 class NetworkRoutingService:
     @staticmethod
