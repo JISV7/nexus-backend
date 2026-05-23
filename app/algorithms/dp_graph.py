@@ -12,6 +12,8 @@ def solve_graph_routing(stages: List[Dict[str, Any]]) -> Dict[str, Any]:
         ...
     ]
     """
+    if not stages or not stages[0]:
+        return {"min_latency": 0, "path": []}
     # Number of stages (from stage 1 to the last stage pointing to sink)
     # We assume the last stage points to the final destination node (e.g., J)
 
